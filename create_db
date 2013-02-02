@@ -1,0 +1,81 @@
+# phpMyAdmin MySQL-Dump
+# version 2.3.2
+# http://www.phpmyadmin.net/ (download page)
+#
+# Host: localhost
+# Generation Time: Jan 11, 2003 at 06:26 PM
+# Server version: 3.23.52
+# PHP Version: 4.2.2
+# Database : `webssk_alumni`
+# --------------------------------------------------------
+
+#
+# Table structure for table `adressen`
+#
+
+DROP TABLE IF EXISTS adressen;
+CREATE TABLE adressen (
+  id int(11) NOT NULL auto_increment,
+  personen_id int(11) NOT NULL default '0',
+  adresse text,
+  email text,
+  homepage text,
+  seit date default NULL,
+  version int(11) NOT NULL default '0',
+  eingetragen timestamp(14) NOT NULL,
+  PRIMARY KEY  (id)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Table structure for table `klassen`
+#
+
+DROP TABLE IF EXISTS klassen;
+CREATE TABLE klassen (
+  id int(11) NOT NULL auto_increment,
+  kommentar text,
+  beginn int(11) NOT NULL default '0',
+  ende int(11) NOT NULL default '0',
+  PRIMARY KEY  (id)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Table structure for table `klassenpersonen`
+#
+
+DROP TABLE IF EXISTS klassenpersonen;
+CREATE TABLE klassenpersonen (
+  klassen_id int(11) NOT NULL default '0',
+  personen_id int(11) NOT NULL default '0',
+  PRIMARY KEY  (klassen_id,personen_id)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Table structure for table `personen`
+#
+
+DROP TABLE IF EXISTS personen;
+CREATE TABLE personen (
+  id int(11) NOT NULL auto_increment,
+  vorname text NOT NULL,
+  name text NOT NULL,
+  geboren date NOT NULL default '0000-00-00',
+  art enum('lehrer','schüler','sonstige') default NULL,
+  eintritt int(11) default NULL,
+  austritt int(11) default NULL,
+  beruf text,
+  eingetragen timestamp(14) NOT NULL,
+  PRIMARY KEY  (id)
+) TYPE=MyISAM;
+
+DROP TABLE IF EXISTS faq;
+CREATE TABLE faq (
+  id int(11) NOT NULL auto_increment,
+  frage text NOT NULL,
+  antwort text NOT NUll,
+  datum timestamp(14) default 'NOW()',
+  PRIMARY KEY  (id)
+) TYPE=MyISAM;

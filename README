@@ -1,0 +1,14 @@
+This is a simple alumni database for schools.
+
+Written in PHP by Roman Hoog Antink (c) 2002-2013.
+
+Its current language is German only.
+It provides no login. Users authenticate by their date of birth.
+It supports class lists with entries of teachers.
+
+It supports tracking all former addresses of users, not just the latest one.
+This can help organizing class reunions in case an entry is not up-to-date and
+the people living at one of the former addresses are still in contact with or
+know about the whereabouts of the class mate.
+
+It does not provide photographs or bindings to other social networks.
