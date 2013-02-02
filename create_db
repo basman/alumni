@@ -1,81 +1,119 @@
-# phpMyAdmin MySQL-Dump
-# version 2.3.2
-# http://www.phpmyadmin.net/ (download page)
-#
-# Host: localhost
-# Generation Time: Jan 11, 2003 at 06:26 PM
-# Server version: 3.23.52
-# PHP Version: 4.2.2
-# Database : `webssk_alumni`
-# --------------------------------------------------------
+-- MySQL dump 10.13  Distrib 5.1.61, for debian-linux-gnu (i486)
+--
+-- Host: localhost    Database: webssk_alumni
+-- ------------------------------------------------------
+-- Server version	5.1.61-2
 
-#
-# Table structure for table `adressen`
-#
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS adressen;
-CREATE TABLE adressen (
-  id int(11) NOT NULL auto_increment,
-  personen_id int(11) NOT NULL default '0',
-  adresse text,
-  email text,
-  homepage text,
-  seit date default NULL,
-  version int(11) NOT NULL default '0',
-  eingetragen timestamp(14) NOT NULL,
-  PRIMARY KEY  (id)
-) TYPE=MyISAM;
-# --------------------------------------------------------
+--
+-- Table structure for table `adressen`
+--
 
-#
-# Table structure for table `klassen`
-#
+DROP TABLE IF EXISTS `adressen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `adressen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `personen_id` int(11) NOT NULL DEFAULT '0',
+  `adresse` text,
+  `email` text,
+  `homepage` text,
+  `seit` date DEFAULT NULL,
+  `version` int(11) NOT NULL DEFAULT '0',
+  `eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_adr_pers_id` (`personen_id`),
+  CONSTRAINT `fk_adr_pers_id` FOREIGN KEY (`personen_id`) REFERENCES `personen` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=257 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS klassen;
-CREATE TABLE klassen (
-  id int(11) NOT NULL auto_increment,
-  kommentar text,
-  beginn int(11) NOT NULL default '0',
-  ende int(11) NOT NULL default '0',
-  PRIMARY KEY  (id)
-) TYPE=MyISAM;
-# --------------------------------------------------------
+--
+-- Table structure for table `faq`
+--
 
-#
-# Table structure for table `klassenpersonen`
-#
+DROP TABLE IF EXISTS `faq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `faq` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `frage` text NOT NULL,
+  `antwort` text NOT NULL,
+  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS klassenpersonen;
-CREATE TABLE klassenpersonen (
-  klassen_id int(11) NOT NULL default '0',
-  personen_id int(11) NOT NULL default '0',
-  PRIMARY KEY  (klassen_id,personen_id)
-) TYPE=MyISAM;
-# --------------------------------------------------------
+--
+-- Table structure for table `klassen`
+--
 
-#
-# Table structure for table `personen`
-#
+DROP TABLE IF EXISTS `klassen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `klassen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kommentar` text,
+  `beginn` int(11) NOT NULL DEFAULT '0',
+  `ende` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS personen;
-CREATE TABLE personen (
-  id int(11) NOT NULL auto_increment,
-  vorname text NOT NULL,
-  name text NOT NULL,
-  geboren date NOT NULL default '0000-00-00',
-  art enum('lehrer','schüler','sonstige') default NULL,
-  eintritt int(11) default NULL,
-  austritt int(11) default NULL,
-  beruf text,
-  eingetragen timestamp(14) NOT NULL,
-  PRIMARY KEY  (id)
-) TYPE=MyISAM;
+--
+-- Table structure for table `klassenpersonen`
+--
 
-DROP TABLE IF EXISTS faq;
-CREATE TABLE faq (
-  id int(11) NOT NULL auto_increment,
-  frage text NOT NULL,
-  antwort text NOT NUll,
-  datum timestamp(14) default 'NOW()',
-  PRIMARY KEY  (id)
-) TYPE=MyISAM;
+DROP TABLE IF EXISTS `klassenpersonen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `klassenpersonen` (
+  `klassen_id` int(11) NOT NULL DEFAULT '0',
+  `personen_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`klassen_id`,`personen_id`),
+  KEY `fk_klassp_pers_id` (`personen_id`),
+  CONSTRAINT `fk_klassp_klass_id` FOREIGN KEY (`klassen_id`) REFERENCES `klassen` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_klassp_pers_id` FOREIGN KEY (`personen_id`) REFERENCES `personen` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `personen`
+--
+
+DROP TABLE IF EXISTS `personen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `personen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vorname` text NOT NULL,
+  `name` text NOT NULL,
+  `geboren` date NOT NULL DEFAULT '0000-00-00',
+  `art` enum('lehrer','schÃ¼ler','eltern','sonstige') DEFAULT NULL,
+  `eintritt` int(11) DEFAULT NULL,
+  `austritt` int(11) DEFAULT NULL,
+  `beruf` text,
+  `eingetragen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-02-02 22:06:04
