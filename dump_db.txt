@@ -1,0 +1,5 @@
+# mit daten:
+mysqldump -u webssk -p webssk_alumni
+
+# ohne daten:
+mysqldump -u webssk -p -d webssk_alumni
