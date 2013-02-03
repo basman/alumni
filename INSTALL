@@ -9,3 +9,5 @@ Installation instructions
 4. copy db.php.dist to db.php
 
 5. edit db.php and fill in the database credentials
+
+6. configure your web server (Apache) to serve the root directory of this project (containing the php scripts)
