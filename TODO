@@ -1,0 +1,7 @@
+Pending security measures:
+- use hashes instead of IDs for database objects in forms to prevent the
+  database from being scraped by enumeration of IDs.
+- the same would prevent editing records not belonging to the current user.
+- replace the authentication by birthday by a confirmation by email mechanism,
+  for editing existing entries and registering new entries. The user has to
+  confirm his editing by clicking on a link in the received confirmation email.
