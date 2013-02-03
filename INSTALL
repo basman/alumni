@@ -1,0 +1,11 @@
+Installation instructions
+
+1. create a new mysql database
+
+2. create a new mysql database user
+
+3. initialize an empty database table structure, using the SQL script create_db
+
+4. copy db.php.dist to db.php
+
+5. edit db.php and fill in the database credentials
