@@ -7,6 +7,10 @@ Hier werden die im Laufe der Zeit an der Datenbank vorgenommenen Verbesserungen
 aufgef&uuml;hrt.
 
 <pre>
+2013-02-03   roman
+   - Die Alumni-Datenbank wird nach 10 Jahren künftig nicht mehr von Roman Hoog Antink und David Bräutigam betrieben. Wir bedanken uns für euer Vertrauen und wünschen der Alumni-Datenbank noch viele erfolgreiche Jahre.
+     In den nächsten Wochen erwarten wir die Umstellung auf den neuen Server. Ansprechpartner ist fortan
+     Peter Bittner vom Schulvorstand.
 2013-01-04   roman
    - Geburtsdaten werden nicht mehr in voller Länge angezeigt, um Manipulationen fremder Einträge zu erschweren.
      Allerdings sind bisher keine derartigen Fälle bekannt.
