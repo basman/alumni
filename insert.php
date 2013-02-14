@@ -23,7 +23,7 @@ if($_REQUEST[geboren] == "" || preg_match("/$aufforderung/", $_REQUEST[geboren])
 	$bad++;
 	$badfields .= "geboren ";
 	$_REQUEST[geboren] = $aufforderung;
-} elseif(!preg_match ("/^\d{4}-\d{1,2}-\d{1,2}$/", $_REQUEST[geboren])) {
+} elseif(!preg_match ("/^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/", $_REQUEST[geboren])) {
 	$bad++; 
 	$badfields .= "geboren ";
 	$_REQUEST[geboren] = "&quot;$_REQUEST[geboren]&quot; ist ein ung&uuml;ltiges Datumsformat";
