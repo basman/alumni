@@ -1,4 +1,10 @@
+Known bugs and missing features:
+
+- prevent creation of duplicate persons (based on first name, last name and
+  date of birth)
+
 Pending security measures:
+
 - use hashes instead of IDs for database objects in forms to prevent the
   database from being scraped by enumeration of IDs.
 - the same would prevent editing records not belonging to the current user.
