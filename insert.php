@@ -60,7 +60,7 @@ if($bad > 0) {
 		"&homepage=" .	urlencode($_REQUEST[homepage]);
 	if(isset($_REQUEST[edit]))
 		$url .= "&edit=1";
-	print "<a href=\"$url\">Seite wird geladen...</a></div></div><div id=\"background_footer\"></div></body></html>";
+	print "<a href=\"$url\">Seite wurde geladen. <u>Bitte hier klicken.</u></a></div></div><div id=\"background_footer\"></div></body></html>";
 	exit;
 }
 
