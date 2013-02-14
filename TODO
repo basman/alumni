@@ -2,6 +2,10 @@ Known bugs and missing features:
 
 - prevent creation of duplicate persons (based on first name, last name and
   date of birth)
+- also prevent entry of reversed last name and first name (how to deal with it?
+  offer to revert existing entry?)
+- remove leading and trailing spaces from names and other input fields or at
+  least prevent their creation
 
 Pending security measures:
 
